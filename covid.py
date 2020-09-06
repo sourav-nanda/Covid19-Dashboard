@@ -62,7 +62,7 @@ st.sidebar.markdown('\
 
 plt.style.use('ggplot')
 url=r'https://api.covid19india.org/data.json'
-img_path=r'F:\maxresdefault.jpg'
+img_path=r'maxresdefault.jpg'
 #coor_url=r'https://api.covid19india.com/dayone/country/India/status/confirmed'
 
 @st.cache(suppress_st_warning=True)
