@@ -1,25 +1,14 @@
 import requests
 import pandas as pd
 import seaborn as sns
-import numpy as np
 import matplotlib.pyplot as plt
 import json
-from PIL import Image
 import streamlit as st
 from streamlit_folium import folium_static
 import folium
 import folium.plugins as plugins
 
-#import matplotlib as mpl
-#from st_annotated_text import annotated_text
-
-#with open(r'F:/style.css') as c:
-#    st.markdown(c.read(),unsafe_allow_html=True)
-#with open(r'F:/index.html') as i:
-#    st.markdown(i.read(),unsafe_allow_html=True)
-#with open(r'F:/script.js') as j:
-#    st.markdown(j.read(),unsafe_allow_html=True)
-
+#Remove the debuging menu as well as footer 
 st.markdown('<style>#MainMenu {Visibility:hidden;}footer {Visibility:hidden;} </style>',unsafe_allow_html=True)
 
 ###############################SIDEBAR#####################################
@@ -74,9 +63,9 @@ def icon(name):
 #end_date=st.date_input('Enter End Date:')
 #url = r'https://api.covidindiatracker.com/state_data.json'
 #querystring = {"start_date":"2020- 08-01","end_date":"2020-08-25"}
-st.cache() 
+
 def imageloader():
-    img=np.array(Image.open(img_path))
+    img=plt.imread(img_path)
     st.image(img,use_column_width=True)
 
 @st.cache()
@@ -189,7 +178,7 @@ rdf=state_data()
 st.subheader('Statenotes')
 for iterator in rdf.Statenotes:
     st.write(iterator,end='')
-#st.write(rdf.Statenotes.to_string(index=False))
+#st.write(rdf.Statenotes.to_string(index=False)) didn't work
 
 
 time=rdf.Lastupdatedtime.to_string(index=False)
@@ -250,7 +239,7 @@ plt.yticks(fontsize=12)
 sns.despine()
 st.pyplot()
 
-
+#Histogram
 fig,ax=plt.subplots(figsize=(9,39))
 clean_rdf.plot.hist(sharey=True,
                     stacked=False,
@@ -265,10 +254,7 @@ plt.rc('axes',labelsize=12)
 ax.set_title('Statewise Distribution of Cases', fontsize=30)
 plt.yticks(range(len(clean_rdf.index)),clean_rdf.index,)
 ax.set_ylabel('Frequency')
-#plt.ticklabel_format(style='plain',axis='y')
 st.pyplot()
-
-
 
 #tested_df=pd.DataFrame(data[2])
 #tested_df.columns=map(lambda x:x.capitalize(),tested_df.columns)
@@ -276,9 +262,6 @@ st.pyplot()
 #tested_df.Testspermillion=tested_df.Testspermillion.astype('int64')
 
 #st.dataframe(tested_df)
-
-#@st.cache(suppress_st_warning=True)
-
 
 @st.cache()
 def country_data():
@@ -293,12 +276,7 @@ def country_data():
         return (da,r)
 country_df,r=country_data()
 
-#return (df,r)
-
 #########################Map_#######################################
-#ind=pd.read_json(r'C:\Users\Saroj\Downloads\in.json')
-#ind.rename({'lng':'lon'},inplace=True,axis=1)
-#coords_grp=ind.groupby('admin').median()
 
 tiles=['CartoDB positron','Stamen Terrain','Stamen Toner','Stamen Watercolor','OpenStreetMap','CartoDB dark_matter']
 
@@ -348,7 +326,6 @@ country_df=pd.DataFrame(r[cou])
 
 
 country_df.index=country_df.date
-#country_df.rename([{'deaths':'Deceased'},{confirmed':''}],inplace=True,axis=1)
 country_df.columns=['0','Confirmed','Deceased','Recovered']
 fig,axes=plt.subplots()
 country_df.plot(figsize=(10,5),
