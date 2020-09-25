@@ -103,10 +103,10 @@ d_region=list(regional_df[regional_df.State=='Total'].drop(['Deltaconfirmed',
 
 #css
 #st.write(d_region[0])
-total_status=f'<div style="padding:10px; width:180px; height:50px; background:deepskyblue; display:block; text-align:left;">\
-Active'+' '+f'{d_region[0][1]}</div><div style="padding:10px; width:180px; height:50px; background:lightcoral; display:block; text-align:left;">\
-Confirmed'+' '+f'{d_region[0][2]}</div></body></html><div style="padding:10px; width:180px; height:50px; background:silver;  display:block; text-align:left;">\
-Deceased'+' '+f'{d_region[0][3]}</div></body></html><div style="padding:10px; width:180px; height:50px; background:lightgreen; display:block; text-align:left;">\
+total_status=f'<div style="padding:10px; width:180px; height:50px; background:deepskyblue; display: inline-block; text-align:left;">\
+Active'+' '+f'{d_region[0][1]}</div><div style="padding:10px; width:180px; height:50px; background:lightcoral; display:inline-block; text-align:left;">\
+Confirmed'+' '+f'{d_region[0][2]}</div></body></html><div style="padding:10px; width:180px; height:50px; background:silver;  display:inline-block; text-align:left;">\
+Deceased'+' '+f'{d_region[0][3]}</div></body></html><div style="padding:10px; width:180px; height:50px; background:lightgreen; display:inline-block; text-align:left;">\
 Recovered'+' '+f'{d_region[0][4]}</div></body></html>'
 
 
