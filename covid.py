@@ -145,6 +145,7 @@ time_total = time_series.drop(['Dailyconfirmed',
 time_total[['Totalconfirmed', 'Totaldeceased', 'Totalrecovered']] = time_total[
     ['Totalconfirmed', 'Totaldeceased', 'Totalrecovered']].astype('int64')
 
+fig,ax=plt.subplots()
 time_daily.plot(subplots=False,
                 sharey=True,
                 title='Daily Interval',
@@ -153,8 +154,9 @@ time_daily.plot(subplots=False,
                 linewidth=5,
                 color=['lightcoral', 'silver', 'lightgreen'],
                 figsize=(11, 5),
+                ax=ax
                 )
-st.pyplot()
+st.pyplot(fig)
 
 fig,ax=plt.subplots()
 time_total.plot(title='Total Data',
@@ -206,14 +208,16 @@ st.table(state_rdf.T)
 state_rdf = state_rdf.astype('int64')
 
 # Individual State Plot
+fig,ax=plt.subplots()
 state_rdf.plot(marker='*',
                color=['deepskyblue', 'lightcoral', 'silver', 'lightgreen'],
                title=state,
                figsize=(7, 4),
-               ylabel='Cases')
+               ylabel='Cases',
+               ax=ax)
 
 plt.xticks(range(len(state_rdf.index)), state_rdf.index)
-st.pyplot()
+st.pyplot(fig)
 
 # regional_df.plot(subplots=True,colormap='viridis',stacked=False,sort_columns=True)
 clean_rdf = regional_df.drop(['Statecode',
@@ -230,6 +234,7 @@ clean_rdf = clean_rdf.iloc[1:, :]
 clean_rdf.index = regional_df.State[1:]
 
 # Overall State Data Plot
+fig,ax=plt.subplots()
 clean_rdf.plot(subplots=False,
                sharey=True,
                figsize=(11, 6),
@@ -238,16 +243,18 @@ clean_rdf.plot(subplots=False,
                xlabel='',
                linewidth=5,
                color=['deepskyblue', 'lightcoral', 'silver', 'lightgreen'],
-               rot=82)
+               rot=82,
+               ax=ax)
 
 plt.ticklabel_format(style='plain', axis='y')
 plt.xticks(range(len(clean_rdf.index)), clean_rdf.index, fontsize=11)
 plt.yticks(fontsize=12)
 
 sns.despine()
-st.pyplot()
+st.pyplot(fig)
 
 # Histogram
+fig,ax=plt.subplots()
 fig, ax = plt.subplots(figsize=(9, 39))
 clean_rdf.plot.hist(sharey=True,
                     stacked=False,
@@ -255,14 +262,15 @@ clean_rdf.plot.hist(sharey=True,
                     sharex=False,
                     ax=ax,
                     color=['deepskyblue', 'lightcoral', 'silver', 'lightgreen'],
-                    ylabel='States')
+                    ylabel='States',
+                    )
 
 plt.rc('legend', fontsize=15)
 plt.rc('axes', labelsize=12)
 ax.set_title('Statewise Distribution of Cases', fontsize=30)
 plt.yticks(range(len(clean_rdf.index)), clean_rdf.index, )
 ax.set_ylabel('Frequency')
-st.pyplot()
+st.pyplot(fig)
 
 
 # tested_df=pd.DataFrame(data[2])
@@ -360,7 +368,7 @@ axes.ticklabel_format(style='plain', axis='y')
 plt.legend()
 axes.set_xlabel('Dates')
 axes.set_ylabel('Cases')
-st.pyplot()
+st.pyplot(fig)
 
 
 with st.beta_expander('About',False):
@@ -369,6 +377,5 @@ with st.beta_expander('About',False):
 with st.beta_expander('Spoiler', False):
     st.write(
         'I am thinking of adding a section which provides some future insights into the pandemic by predicting the covid statistics upto one week from present or more depending upon the robustness of the model. As I am still relatively new to time series forecasting it will take some time so I can\'t promise anything 😉')
-
 
 
