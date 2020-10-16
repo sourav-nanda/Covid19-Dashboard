@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import json
 import streamlit as st
 from streamlit_folium import folium_static
-import streamlit.components.v1 as components
 import folium
 import folium.plugins as plugins
 
@@ -31,7 +30,7 @@ st.sidebar.markdown('\
     \
     <h3>Connect with me on </h3>\
     <div class="socializer a sr-32px sr-opacity sr-icon-dark sr-bg-none sr-pad"><span class="sr-facebook"><a href="https://www.facebook.com/sourav.nanda.528" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></span><span class="sr-instagram"><a href="https://www.instagram.com/_sourav_nanda_/?hl=en" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></span><span class="sr-github"><a href="https://github.com/sourav-nanda/" target="_blank" title="Github"><i class="fa fa-github"></i></a></span><span class="sr-linkedin"><a href="https://www.linkedin.com/in/sourav-nanda-31ab841aa/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></span></div>\
-    <div class="circleborder"><img class="face" src="https://instagram.fbbi1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/60169341_437177673747856_6481553481608986624_n.jpg?_nc_ht=instagram.fbbi1-1.fna.fbcdn.net&_nc_ohc=QznaJuHwRWcAX9A_7eE&oh=3123e4ecb63e818c987d64b478bac5e0&oe=5F7F1267" alt="face" width="56" height="56"></div>\
+    <div class="circleborder"><img class="face" src="https://instagram.fbbi1-1.fna.fbcdn.net/v/t51.2885-19/s320x320/60169341_437177673747856_6481553481608986624_n.jpg?_nc_ht=instagram.fbbi1-1.fna.fbcdn.net&_nc_ohc=us7I0uacHgwAX-fujph&oh=632bda131235dc4c28d55467ae720041&oe=5FB27797" alt="face" width="56" height="56"></div>\
     \
     <style>\
     .face {\
@@ -157,6 +156,7 @@ time_daily.plot(subplots=False,
                 )
 st.pyplot()
 
+fig,ax=plt.subplots()
 time_total.plot(title='Total Data',
                 kind=pl,
                 figsize=(11, 5),
@@ -165,9 +165,10 @@ time_total.plot(title='Total Data',
                 stacked=False,
                 color=['lightcoral', 'silver', 'lightgreen'],
                 sharey=True,
-                ylabel='Cases (in millions)')
+                ylabel='Cases (in millions)',
+                ax=ax)
 # plt.ticklabel_format(style='plain',axis='y')
-st.pyplot()
+st.pyplot(fig)
 
 # regional_df.index=regional_df.Region
 
@@ -361,65 +362,13 @@ axes.set_xlabel('Dates')
 axes.set_ylabel('Cases')
 st.pyplot()
 
-components.html(
-    """
-    <!DOCTYPE html>
-<html>
-<head>
-  <title>Bootstrap Example</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
 
-<div class="container">
+with st.beta_expander('About',False):
+     st.write('I am an undergrad student pursuing the field of Data Science so I don\'t have much time on hand for hobby projects but still I took a pause from the machine learning and deep learning stuff and devoted some time towards this project.Although this project involves some minimal data manipulation including but not limited to preprocessing but still it isn\'t something that I should actively spend my time on so there will be very minor updates in the forthcoming future.\
+    Give me a ⭐ on github if you like the app.')
+with st.beta_expander('Spoiler', False):
+    st.write(
+        'I am thinking of adding a section which provides some future insights into the pandemic by predicting the covid statistics upto one week from present or more depending upon the robustness of the model. As I am still relatively new to time series forecasting it will take some time so I can\'t promise anything 😉')
 
-  <a href="#demo" class="btn btn-primary" data-toggle="collapse">About</a>
-  <div id="demo" class="collapse">
-    I am an undergrad student pursuing the field of Data Science so I don't have much time on hand for hobby projects but still I took a pause from the machine learning and deep learning stuff and devoted some time towards this project.Although this project involves some minimal data manipulation including but not limited to preprocessing but still it isn't something that I should actively spend my time on so there will be very minor updates in the forthcoming future.
-    Give me a ⭐ on github if you like the app.
-  </div>
-</div>
 
-</body>
-</html>
-
-    """,
-    height=40,
-    width=600,
-    scrolling=True
-)
-
-components.html(
-    """
-    <!DOCTYPE html>
-<html>
-<head>
-  <title>Bootstrap Example</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<div class="container">
-
-  <a href="#demo" class="btn btn-primary" data-toggle="collapse">Spoiler</a>
-  <div id="demo" class="collapse">
-    I am thinking of adding a section which provides some future insights into the pandemic by predicting the covid statistics upto one week from present or more depending upon the robustness of the model. As I am still relatively new to time series forecasting it will take some time so I can't promise anything 😉
-  </div>
-</div>
-
-</body>
-</html>
-
-    """,
-    height=200,
-    width=600,
-)
 
