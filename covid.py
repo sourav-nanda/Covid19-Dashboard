@@ -30,7 +30,7 @@ st.sidebar.markdown('\
     \
     <h3>Connect with me on </h3>\
     <div class="socializer a sr-32px sr-opacity sr-icon-dark sr-bg-none sr-pad"><span class="sr-facebook"><a href="https://www.facebook.com/sourav.nanda.528" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></span><span class="sr-instagram"><a href="https://www.instagram.com/_sourav_nanda_/?hl=en" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></span><span class="sr-github"><a href="https://github.com/sourav-nanda/" target="_blank" title="Github"><i class="fa fa-github"></i></a></span><span class="sr-linkedin"><a href="https://www.linkedin.com/in/sourav-nanda-31ab841aa/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></span></div>\
-    <div class="circleborder"><img class="face" src="https://instagram.fbbi1-1.fna.fbcdn.net/v/t51.2885-19/s320x320/60169341_437177673747856_6481553481608986624_n.jpg?_nc_ht=instagram.fbbi1-1.fna.fbcdn.net&_nc_ohc=us7I0uacHgwAX-fujph&oh=632bda131235dc4c28d55467ae720041&oe=5FB27797" alt="face" width="56" height="56"></div>\
+    <div class="circleborder"><img class="face" src="https://avatars1.githubusercontent.com/u/67404111?s=400&u=179c2bd70de5b323c0fed27cf4e3bb3e697c7d0d&v=4" alt="face" width="56" height="56"></div>\
     \
     <style>\
     .face {\
