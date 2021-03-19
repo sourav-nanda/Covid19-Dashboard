@@ -2,7 +2,7 @@ folium==0.11.0
 numpy==1.18.1
 streamlit==0.69.1
 matplotlib==3.2.1
-Pillow==7.1.2
+Pillow==8.1.1
 pandas==1.1.1
 streamlit-folium==0.1.0 
 requests==2.23.0 
