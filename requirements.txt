@@ -1,5 +1,5 @@
 folium==0.11.0
-numpy==1.18.1
+numpy==1.22.0
 streamlit==0.69.1
 matplotlib==3.2.1
 Pillow==8.2.0
